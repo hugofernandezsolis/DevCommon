@@ -1,6 +1,0 @@
-/usr/local/include/logs.h
-/usr/local/include/LogStreamHelper.h
-/usr/local/include/Logger.h
-/usr/local/lib/cmake/DevCommon/DevCommonTargets.cmake
-/usr/local/lib/cmake/DevCommon/DevCommonConfig.cmake
-/usr/local/lib/cmake/DevCommon/DevCommonConfigVersion.cmake
