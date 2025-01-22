@@ -64,7 +64,7 @@ set_target_properties(DevCommon::DevCommon PROPERTIES
 )
 
 # Create imported target DevCommon::logger_lib
-add_library(DevCommon::logger_lib INTERFACE IMPORTED)
+add_library(DevCommon::logger_lib STATIC IMPORTED)
 
 set_target_properties(DevCommon::logger_lib PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"

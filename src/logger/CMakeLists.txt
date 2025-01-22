@@ -15,7 +15,7 @@ file (
 )
 
 add_library (
-  ${COMPONENT_LIB} OBJECT
+  ${COMPONENT_LIB} STATIC
 )
 
 target_include_directories(
