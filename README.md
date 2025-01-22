@@ -1,2 +1,2 @@
-# dev_common
+# DevCommon
 Common tools for C++ development
