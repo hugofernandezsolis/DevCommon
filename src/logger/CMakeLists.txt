@@ -3,9 +3,15 @@
 ################################################################################
 ### Add comment here.
 ################################################################################
+message (STATUS "  Found component: ${COMPONENT}")
+
 
 set (
-  COMPONENT_DEPENDENCIES
+  COMPONENT_LIB ${COMPONENT}_lib
+)
+
+add_library (
+  ${COMPONENT_LIB} INTERFACE
 )
 
 file (
@@ -14,15 +20,11 @@ file (
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c"
 )
 
-add_library (
-  ${COMPONENT_LIB} STATIC
-)
-
-target_include_directories(
+target_include_directories (
   ${COMPONENT_LIB}
-  PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
+    INTERFACE
+      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+      $<INSTALL_INTERFACE:include>
 )
 
 target_sources (
@@ -31,8 +33,8 @@ target_sources (
 )
 
 target_link_libraries (
-  ${COMPONENT_LIB}
-    PRIVATE ${COMPONENT_DEPENDENCIES}
+  ${PROJECT_NAME}
+    PUBLIC ${COMPONENT_LIB}
 )
 
 if (ENABLE_TESTS)
@@ -41,7 +43,14 @@ if (ENABLE_TESTS)
   )
 endif ()
 
-install(
-  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
-  DESTINATION include
+include (GNUInstallDirs)
+
+install (
+  TARGETS ${COMPONENT_LIB}
+  EXPORT ${PROJECT_NAME}Targets
+)
+
+install (
+  DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )

@@ -44,24 +44,16 @@ set (
 ### Add comment here.
 ################################################################################
 
-message (
-  STATUS "\n-- Configuring components"
+message (STATUS "\n-- Setting components")
+
+set (
+  COMPONENTS
+    logger
 )
 
 foreach( COMPONENT ${COMPONENTS})
-  set (
-    COMPONENT_LIB ${COMPONENT}_lib
-  )
-
-  message (
-    STATUS "  Configuring ${COMPONENT} component"
-  )
   add_subdirectory (
     ${COMPONENT}
-  )
-  target_link_libraries (
-    ${PROJECT_NAME}
-      INTERFACE ${COMPONENT_LIB}
   )
 endforeach()
 
