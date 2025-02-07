@@ -11,8 +11,6 @@
 
 #include <LogStreamHelper.h>
 
-#include <iostream>
-
 
 namespace _priv_logger_ {
 

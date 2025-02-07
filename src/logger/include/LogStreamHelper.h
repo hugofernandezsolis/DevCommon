@@ -12,9 +12,9 @@
 #pragma once
 
 
-#include <sstream>
-
 #include <Logger.h>
+
+#include <sstream>
 
 
 namespace _priv_logger_ {
