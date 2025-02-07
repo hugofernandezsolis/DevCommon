@@ -5,36 +5,22 @@
 ################################################################################
 message (STATUS "  Found component: ${COMPONENT}")
 
-
-set (
-  COMPONENT_LIB ${COMPONENT}_lib
-)
-
-add_library (
-  ${COMPONENT_LIB} INTERFACE
-)
-
 file (
-  GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
+  GLOB_RECURSE ${COMPONENT}_SRC_FILES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c"
 )
 
 target_include_directories (
-  ${COMPONENT_LIB}
-    INTERFACE
+  ${PROJECT_NAME}
+    PUBLIC
       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-      $<INSTALL_INTERFACE:include>
+      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 target_sources (
-  ${COMPONENT_LIB}
-    PRIVATE ${SRC_FILES}
-)
-
-target_link_libraries (
   ${PROJECT_NAME}
-    PUBLIC ${COMPONENT_LIB}
+    PRIVATE ${${COMPONENT}_SRC_FILES}
 )
 
 if (ENABLE_TESTS)
@@ -42,15 +28,3 @@ if (ENABLE_TESTS)
     tests
   )
 endif ()
-
-include (GNUInstallDirs)
-
-install (
-  TARGETS ${COMPONENT_LIB}
-  EXPORT ${PROJECT_NAME}Targets
-)
-
-install (
-  DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)

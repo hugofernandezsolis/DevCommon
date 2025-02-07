@@ -64,7 +64,6 @@ project (
 
 add_library (
   ${PROJECT_NAME} ${LIB_TYPE}
-    ${CMAKE_CURRENT_LIST_DIR}/src/.dummy.cpp
 )
 
 
