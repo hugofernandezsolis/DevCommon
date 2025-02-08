@@ -52,6 +52,10 @@ set (
 )
 
 foreach( COMPONENT ${COMPONENTS})
+  set (
+    COMPONENT_LIB
+      ${COMPONENT}_lib
+  )
   add_subdirectory (
     ${COMPONENT}
   )

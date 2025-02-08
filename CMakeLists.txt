@@ -63,7 +63,7 @@ project (
 )
 
 add_library (
-  ${PROJECT_NAME} ${LIB_TYPE}
+  ${PROJECT_NAME} INTERFACE
 )
 
 
@@ -80,17 +80,17 @@ set (
 
 target_compile_features (
   ${PROJECT_NAME} 
-    PUBLIC cxx_std_17
+    INTERFACE cxx_std_17
 )
 
 target_compile_options (
   ${PROJECT_NAME}
-    PRIVATE -Wall -Wextra -Wpedantic
+    INTERFACE -Wall -Wextra -Wpedantic
 )
 
 target_compile_options (
   ${PROJECT_NAME}
-    PRIVATE
+    INTERFACE
       $<$<CONFIG:Debug>:-O0 -g>
       $<$<CONFIG:Release>:-O3>
 )
